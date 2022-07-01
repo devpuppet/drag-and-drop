@@ -1,3 +1,5 @@
+import { ProjectList } from "@src/project-list";
+
 class ProjectInput {
     templateElement: HTMLTemplateElement;
     hostElement: HTMLDivElement;
@@ -82,8 +84,6 @@ class ProjectInput {
     }
 }
 
-const projectInput = new ProjectInput();
-
 interface Validatable {
     value: string | number;
     required: boolean;
@@ -125,3 +125,7 @@ function Autobind(_: any, _2: string, descriptor: PropertyDescriptor) {
     };
     return adjustedDescriptor;
 }
+
+const projectInput = new ProjectInput();
+const activeProjectList = new ProjectList('active');
+const finishedProjectList = new ProjectList('finished');
