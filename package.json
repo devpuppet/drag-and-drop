@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "build": "tsc-bundle tsconfig.json",
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "lite-server"
   },
@@ -24,6 +25,7 @@
     "@types/node": "^13.9.3"
   },
   "devDependencies": {
-    "lite-server": "^2.5.4"
+    "lite-server": "^2.5.4",
+    "typescript-bundle": "1.0.18"
   }
 }
