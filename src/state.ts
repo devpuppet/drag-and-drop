@@ -1,6 +1,9 @@
+import { Project, ProjectStatus } from '@src/models/project'
+import { Listener } from '@src/models/listener'
+
 export class ProjectState {
-    private listeners: any[] = [];
-    private projects: any[] = [];
+    private listeners: Listener[] = [];
+    private projects: Project[] = [];
     private static instance: ProjectState;
 
     private constructor() {}
@@ -14,19 +17,19 @@ export class ProjectState {
     }
 
     addProject(title: string, description: string, numberOfPeople: number) {
-        const newProject = {
-            id: Math.random().toString,
-            title: title,
-            description: description,
-            people: numberOfPeople
-        };
+        const newProject = new Project(
+            Math.random().toString(),
+            title,
+            description,
+            numberOfPeople,
+            ProjectStatus.Active);
         this.projects.push(newProject);
         for (const listenerFn of this.listeners) {
             listenerFn(this.projects.slice()); // pass a copy of projects array to the function, not the original
         }
     }
 
-    addListener(listenerFn: Function) {
+    addListener(listenerFn: Listener) {
         this.listeners.push(listenerFn);
     }
 }
