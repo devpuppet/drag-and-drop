@@ -1,5 +1,5 @@
-import { Project } from "./models/project";
-import { Component } from "./component/component-base";
+import { Project } from "../models/project";
+import { Component } from "../component/component-base";
 
 export class ProjectItem extends Component<HTMLUListElement, HTMLLIElement> {
 

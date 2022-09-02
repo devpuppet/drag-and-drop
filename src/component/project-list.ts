@@ -1,6 +1,6 @@
-import { Project, ProjectStatus } from "./models/project";
-import { projectState } from "./state";
-import { Component } from './component/component-base'
+import { Project, ProjectStatus } from "../models/project";
+import { projectState } from "../utils/state";
+import { Component } from './component-base'
 import { ProjectItem } from './project-item'
 
 export class ProjectList extends Component<HTMLDivElement, HTMLElement> {
