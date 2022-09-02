@@ -1,7 +1,7 @@
-import { Validatable, validate } from "@src/validation";
-import { Autobind } from "@src/decorators";
-import { projectState } from '@src/state';
 import { Component } from "./component/component-base";
+import { Autobind } from "./decorators";
+import { Validatable, validate } from "./validation";
+import { projectState } from "./state";
 
 export class ProjectInput extends Component<HTMLDivElement, HTMLFormElement> {
     titleInputElement: HTMLInputElement;
@@ -62,7 +62,7 @@ export class ProjectInput extends Component<HTMLDivElement, HTMLFormElement> {
         this.peopleInputElement.value = '';
     } 
 
-    @Autobind
+    @Autobind 
     private submitHandler(event: Event) {
         event.preventDefault();
         const userInput = this.gatherUserInput();
