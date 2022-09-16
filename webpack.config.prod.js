@@ -1,8 +1,9 @@
 const path = require('path');
+const CleanPlugin = require('clean-webpack-plugin');
 
 module.exports = {
-    // Tell webpack that this is development environment. Webpack will do fewer optimisations but better dev experience.
-    mode: 'development',
+    // Tell webpack that this is prod environment. Webpack will do optimisations, minify code etc.
+    mode: 'production',
     entry: './src/app.ts',
     performance: {
         hints: false
@@ -13,22 +14,11 @@ module.exports = {
         // Specify where the output should be written.
         // It should match tsconfig/outDir property to avoid errors.
         // Webpack need absolutr path (not relative) - you need to use Node.js 'path' mddule to build it
-        path: path.resolve(__dirname, 'dist'),
-        // Needed for dev-server. By default, it holds bundle.js file in-memory. Code changes are not updated automatically.
-        // To enable live-updates, need to write bundle.js file into the hard drive using below option
-        publicPath: '/dist/'
+        path: path.resolve(__dirname, 'dist')
     },
 
-    devServer: {
-        static: {
-            directory: path.resolve(__dirname, './')
-        },
-        compress: true,
-        port: 3000
-    },
-
-    // It tells webpack that there will be .map.js files and it should map it to bundled file
-    devtool: 'source-map',
+    // It tells webpack to turn off devTools
+    devtool: false,
 
     // You need to tell webpack what to do with TS files
     module: {
@@ -45,5 +35,9 @@ module.exports = {
     // We tell webpack which file extensions it adds to the imports it finds (by default it looks for .js files only)
     resolve: {
         extensions: ['.ts', '.js']
-    }
+    },
+    plugins: [
+        // Plugin tells webpack before it writes something to /dist, it should clear the directory
+        new CleanPlugin.CleanWebpackPlugin()
+    ]
 }
